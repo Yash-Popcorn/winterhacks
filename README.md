@@ -7,12 +7,14 @@ Winter Hacks Website made using Next.JS
 Use the package manager [npm](https://www.npmjs.com/) to install packages.
 
 ```bash
+cd winter-hacks
 npm install
 ```
 
 ## Setup
 
 ```typescript
+// make sure you are in the winter-hacks directory
 npm start
 ```
 
