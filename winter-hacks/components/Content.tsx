@@ -15,18 +15,6 @@ export default function Content() {
             }}>
                 A website that allows people to anonymously post videos with a blur, providing a unique and anonymous perspective on various topics.
             </Text>
-            <Image width={320}
-                height={180}  
-                src="/wave.png"
-                alt="Default Image"
-                objectFit="cover"
-                css={{
-                    right: "50%"
-                }}
-            >
-                
-            </Image>
-
         </>
     )
 }

@@ -1,4 +1,5 @@
-import { Button, changeTheme, Image, Navbar, Spacer, Switch, Text, useTheme as useNextTheme, useTheme} from '@nextui-org/react'
+import { Button, changeTheme, Navbar, Spacer, Switch, Text, useTheme as useNextTheme, useTheme} from '@nextui-org/react'
+import Image from 'next/image'
 import Content from '../components/Content'
 import Nav from '../components/Navbar'
 
@@ -17,6 +18,15 @@ export default function Home() {
       }}>
         Start
       </Button>
+
+      <div className="bg-image-wrapper">
+        <Image
+          src="/wave_back.png"
+          alt="Cartoon graduates jump with happiness"
+          quality="100"
+          fill
+          />
+      </div>
     </div>
   )
 }

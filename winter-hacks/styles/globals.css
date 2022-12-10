@@ -1,0 +1,14 @@
+.bg-image-wrapper {
+    position: fixed;
+    top: 0;
+    left: 85%;
+    top: 8%;
+    width: 40vw;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
