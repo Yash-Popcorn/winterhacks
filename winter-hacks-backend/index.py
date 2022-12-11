@@ -1,42 +1,39 @@
 import cv2
 import numpy as np
+import os
 from google.cloud import storage
 from flask import Flask
+from flask import request
+from uuid import uuid4
 
 app = Flask(__name__)
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
-    """Uploads a file to the bucket."""
-    # The ID of your GCS bucket
-    # bucket_name = "your-bucket-name"
-    # The path to your file to upload
-    # source_file_name = "local/path/to/file"
-    # The ID of your GCS object
-    # destination_blob_name = "storage-object-name"
-
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
 
     blob.upload_from_filename(source_file_name)
+    blob.make_public()
 
+    os.remove('blurred_video.mp4')
     print(
         f"File {source_file_name} uploaded to {destination_blob_name}."
     )
 
 @app.route("/upload")
-def upload():
-    video = cv2.VideoCapture("https://storage.googleapis.com/blur-video-posts/Man%20-%20122389.mp4")
-
+async def upload():
+    link = request.args.get('link')
+    video = cv2.VideoCapture('https://storage.googleapis.com/blur-video-posts/e5da8e1214c92182d2cf39900')
     face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
-    kernel = np.ones((20, 20), np.float32) / 400
+    kernel = np.ones((80, 80), np.float32) / 6400
 
     frame_width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = video.get(cv2.CAP_PROP_FPS)
 
-    fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+    fourcc = cv2.VideoWriter_fourcc(*'X264')
     out = cv2.VideoWriter("blurred_video.mp4", fourcc, fps, (frame_width, frame_height))
     
     while (video.isOpened()):

@@ -1,9 +1,12 @@
 import { Button, changeTheme, Navbar, Spacer, Switch, Text, useTheme as useNextTheme, useTheme} from '@nextui-org/react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import Content from '../components/Content'
 import Nav from '../components/Navbar'
 
 export default function Home() {
+
+  const router = useRouter()
 
   return (
     <div style={{
@@ -15,6 +18,8 @@ export default function Home() {
       <Spacer y={2}/>
       <Button shadow color="gradient" bordered css={{
         left: "$9",
+      }} onClick={() => {
+        router.push('/posts')
       }}>
         Start
       </Button>

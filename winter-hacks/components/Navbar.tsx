@@ -27,7 +27,10 @@ export default function Nav() {
           }}>About</Navbar.Link>
           <Navbar.Link href="/posts" css={{
             color: isDark && "$white" || "$black"
-          }}>Posts</Navbar.Link>
+          }}>Create Post</Navbar.Link>
+          <Navbar.Link href="/showposts" css={{
+            color: isDark && "$white" || "$black"
+          }}>Show Posts</Navbar.Link>
         </Navbar.Content>
 
         <Switch checked={ !isDark } color="secondary" onChange={(e) => {
